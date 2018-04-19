@@ -9,6 +9,7 @@ interface point<T> {
 @IonicPage({
 	segment: 'farmerdetail/:type'
 })
+
 @Component({
   selector: 'page-farmerdetail',
   templateUrl: 'farmerdetail.html'
@@ -42,12 +43,18 @@ export class Farmerdetail {
 	constructor(public navCtrl: NavController, private navParams: NavParams, private superTabsCtrl: SuperTabsController) {
 		this.current_farmer = navParams.get('farmer');
 		this.pageTitle      = this.current_farmer.fm_name;
+
+		console.log(this.current_farmer);
+		console.log(this.current_farmer);
+
 		this.parmsPage1     = {rootNavCtrl: this.navCtrl ,farmer: this.current_farmer, form_name : 'kyc' };
 		this.parmsPage2     = {rootNavCtrl: this.navCtrl ,farmer: this.current_farmer, form_name : 'land details' };
 		this.parmsPage3     = {rootNavCtrl: this.navCtrl ,farmer: this.current_farmer, form_name : 'crop details' };
 		this.parmsPage4     = {rootNavCtrl: this.navCtrl ,farmer: this.current_farmer, form_name : 'assets' };
 		this.parmsPage5     = {rootNavCtrl: this.navCtrl ,farmer: this.current_farmer, form_name : 'loan and liability' };
 		this.parmsPage6     = {rootNavCtrl: this.navCtrl ,farmer: this.current_farmer, form_name : 'Documents' };
+		
+		console.log(this.parmsPage1);
 	}
 
 	ngAfterViewInit() {

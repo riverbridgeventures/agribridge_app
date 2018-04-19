@@ -494,6 +494,7 @@ export class MyApp {
                         }
                     },err => {
                         console.log(err);
+                        console.log('error1');
                     });
                 }
 
@@ -519,6 +520,7 @@ export class MyApp {
                 }
             }, err => {
                 console.log(err);
+                console.log('error2');
             });
             
         }
@@ -608,6 +610,7 @@ export class MyApp {
                     }
                 }, error => {
                     console.log(error);
+                    console.log('error3');
                 });
 
                 this.httpSubscriptions.push(req);
@@ -615,6 +618,7 @@ export class MyApp {
             
         }, err => {
             console.log(err);
+            console.log('error4');
         });
     }
 
@@ -881,8 +885,8 @@ export class MyApp {
                             }, error => {
                                 console.log(error);
                             });
+                            
                             this.httpSubscriptions.push(req);
-
                         }
 
                     }

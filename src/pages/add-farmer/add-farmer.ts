@@ -11,6 +11,7 @@ import { Events } from 'ionic-angular';
  *
  * See https://ionicframework.com/docs/components/#navigation for more info on
  * Ionic pages and navigation.
+ * To add farmers
  */
 
 @IonicPage()
@@ -19,8 +20,10 @@ import { Events } from 'ionic-angular';
     templateUrl: 'add-farmer.html',
 })
 export class AddFarmerPage {
-
+   
+    /** Initialized form group name*/
     personal: FormGroup;
+    /** Check form is submitted or not*/
     submitAttempt: boolean = false;
     retryButton: boolean = false;
     ca_id: any = "";
@@ -45,6 +48,7 @@ export class AddFarmerPage {
             fm_lname: ['', Validators.compose([Validators.maxLength(50), Validators.pattern('[a-zA-Z0-9 ]*'), Validators.required])],
             fm_mobileno: ['', Validators.compose([Validators.pattern('^[0-9\-]{10}$'), Validators.required]), ExtraValidator.checkMobile],
             fm_aadhar: ['', Validators.compose([Validators.pattern('^[0-9]{12}$'), Validators.required]), ExtraValidator.checkAadhar],
+            fm_gender: ['', Validators.required],
         });
 
         // load fpos
@@ -77,13 +81,14 @@ export class AddFarmerPage {
             let date = new Date();
             let dateNow = date.getTime() / 1000 | 0;
 
-            this.sql.query("INSERT INTO tbl_farmers (fm_fpo, fm_caid, fm_fname, fm_mname, fm_lname, fm_mobileno, fm_aadhar, fm_createddt, fm_modifieddt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)",
+            this.sql.query("INSERT INTO tbl_farmers (fm_fpo, fm_caid, fm_fname, fm_mname, fm_lname,fm_gender,fm_mobileno, fm_aadhar, fm_createddt, fm_modifieddt) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)",
                 [
                     this.personal.value.fm_fpo.id,
                     this.ca_id,
                     this.personal.value.fm_fname,
                     this.personal.value.fm_mname,
                     this.personal.value.fm_lname,
+                    this.personal.value.fm_gender,
                     this.personal.value.fm_mobileno,
                     this.personal.value.fm_aadhar,
                     dateNow,
@@ -110,5 +115,4 @@ export class AddFarmerPage {
                 });
         }
     }
-
 }

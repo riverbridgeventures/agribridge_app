@@ -4,6 +4,7 @@ import { Events } from 'ionic-angular';
 const DB_NAME: string = '__agribridgeDb';
 const win: any = window;
 
+/** It is used for to execute database related functionality */
 @Injectable()
 export class Sql {
     private _db: any;

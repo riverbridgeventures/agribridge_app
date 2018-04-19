@@ -60,6 +60,15 @@
 					<p *ngIf="personal.controls.fm_lname.errors.required">Please enter a valid name.</p>
 					<p *ngIf="personal.controls.fm_lname.errors.maxlength">Length shoud be equal to or smaller than {{personal.controls.fm_lname.errors.maxlength.requiredLength}}</p>
 				</div>
+				<!-- Registration Details -->
+
+				<ion-item>
+					<ion-label floating>Gender? <span>*</span> </ion-label>
+					<ion-select formControlName="fm_gender" interface="popover">
+						<ion-option value="male">Male</ion-option>
+						<ion-option value="female">Female</ion-option>
+					</ion-select>
+				</ion-item>
 
 				<ion-item>
 					<ion-label floating>Mobile no. <span>*</span></ion-label>

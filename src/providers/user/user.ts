@@ -32,7 +32,6 @@ export class UserProvider {
                     val.token_expiry
                 );
             }
-            // console.log(val);
         });
     }
     

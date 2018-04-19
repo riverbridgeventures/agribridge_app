@@ -37,6 +37,7 @@ import { ExtraValidator } from '../../validators/ExtraValidator';
             fm_mobileno: ['', Validators.compose([Validators.pattern('^[0-9\-]{10}$'), Validators.required]), (control) => this.checkMobilePersonal(control, this.fm_id)],
             fm_aadhar: ['', Validators.compose([Validators.pattern('^[0-9]{12}$'), Validators.required]), (control) => this.checkAadharPersonal(control, this.fm_id)],
             fm_fpo: ['', Validators.required],
+            fm_gender: ['', Validators.required],
             
             f1_mfname: ['', Validators.compose([Validators.maxLength(50), Validators.pattern('[a-zA-Z0-9 ]*'), Validators.required])],
             f1_mmname: ['', Validators.compose([Validators.maxLength(50), Validators.pattern('[a-zA-Z0-9 ]*'), Validators.required])],
@@ -114,13 +115,13 @@ import { ExtraValidator } from '../../validators/ExtraValidator';
                 formData['f1_licno']         = sqlData.f1_licno;
                 formData['f1_otherno']       = sqlData.f1_otherno;
                 formData['f1_expfarm']       = sqlData.f1_expfarm;
-
+                formData['fm_gender']        = sqlData.fm_gender;
+                console.log(formData['fm_gender']);
                 this.personal.setValue(formData);
                 if (formData['f1_mfname']) {
                     this.exist = true;
                 }
             }
-
         }, err => {
             console.log(err);
         });
@@ -137,7 +138,7 @@ import { ExtraValidator } from '../../validators/ExtraValidator';
 
             let date = new Date();
             let dateNow = date.getTime()/1000|0;
-            this.sql.query('UPDATE tbl_farmers SET fm_fpo = ?, fm_fname = ?, fm_mname = ?, fm_lname = ?, fm_mobileno = ?, fm_aadhar  = ?, fm_modifieddt = ? WHERE local_id = ?', [
+            this.sql.query('UPDATE tbl_farmers SET fm_fpo = ?, fm_fname = ?, fm_mname = ?, fm_lname = ?, fm_mobileno = ?, fm_aadhar  = ?, fm_modifieddt = ?, fm_gender = ? WHERE local_id = ?', [
 
                 this.personal.value.fm_fpo.id,
                 this.personal.value.fm_fname,
@@ -146,6 +147,7 @@ import { ExtraValidator } from '../../validators/ExtraValidator';
                 this.personal.value.fm_mobileno,
                 this.personal.value.fm_aadhar,
                 dateNow,
+                this.personal.value.fm_gender,
                 this.fm_id
             ]).then(data => {
                 if (this.exist) {

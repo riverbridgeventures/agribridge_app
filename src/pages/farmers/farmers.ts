@@ -519,13 +519,18 @@ export class FarmersPage {
 			    let query = 'Insert into ' + tablename;
 
 			    if(tablename == 'tbl_farmers'){
+			    
 			    	columns.pop(); //remove fm_fpo
 			    	columns.pop(); //remove insert_type
 			    	columns.pop(); //remove local_upload
+			    	columns.pop(); //remove fm_gender
 			    	columns.pop(); //remove local_id
 
+			    	columns.push('fm_gender');
 			    	columns.push('fm_fpo');
 			    	columns.push('insert_type');
+			    	
+			    	// columns.push('insert_type');
 			    }
 			    else if(tablename === 'tbl_loan_details' || tablename === 'tbl_yield_details'){
 
@@ -564,12 +569,13 @@ export class FarmersPage {
 				    for (let m = 0; m < val.rows.length; m++) {
 
 					    let serverRow = val.rows[m];
+
 					    let final_data:any = {};
 					    for (let i = 0; i < columns.length; i++) {
 					    	final_data[columns[i]] = serverRow[columns[i]];
 					    }
 
-					    if(tablename != 'tbl_farmers'){
+						if(tablename != 'tbl_farmers'){
 						    tx.executeSql('Select local_id from tbl_farmers where fm_id = ? ', [fm_id], (txx, d) => {
 						    		
 						    	if(d.rows.length > 0){
@@ -592,6 +598,7 @@ export class FarmersPage {
 										}
 							    	}
 
+							    	
 						    		this.insertData(tablename, query, final_data, tx, isLast || false);
 						    	}
 
@@ -615,6 +622,8 @@ export class FarmersPage {
 							let date3                   = new Date(final_data['fm_modifieddt']);
 							final_data['fm_createddt']  = date2.getTime();
 							final_data['fm_modifieddt'] = date3.getTime();
+
+							console.log(query,final_data); 
 					    	this.insertData(tablename, query, final_data, tx, isLast || false);
 					    }
 				    }
@@ -631,6 +640,7 @@ export class FarmersPage {
 	}
 
 	insertData(tablename, query, final_data, tx, isLast = false){
+
 		if(tablename === 'LASTFLAG'){
 			if(isLast){
 			    this.sql.query("SELECT * FROM tbl_farmers limit 0,1", []).then(data => {

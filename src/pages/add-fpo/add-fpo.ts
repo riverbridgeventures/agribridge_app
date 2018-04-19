@@ -10,6 +10,7 @@ import 'rxjs/add/operator/map';
 
 
 @IonicPage()
+
 @Component({
     selector: 'page-add-fpo',
     templateUrl: 'add-fpo.html',
@@ -89,16 +90,7 @@ export class AddFpoPage {
             formData['fpo_mobile']   = _fpo.fpo_mobile || '';
             formData['fpo_password'] = _fpo.fpo_password || '';
 
-            // formData['fpo_state']    = _fpo.fpo_state ? { name : _fpo.fpo_state } : '';
-            // this.stateChange('p',{value : formData['fpo_state']});
-            
-            // formData['fpo_district'] = _fpo.fpo_district ? { name : _fpo.fpo_district } : '';
-            // this.districtChange('p',{value : formData['fpo_district']});
-            
-            // formData['fpo_taluka']   = _fpo.fpo_taluka ? { name : _fpo.fpo_taluka } : '';
-            // this.talukaChange('p',{value : formData['fpo_taluka']});
-            
-            // formData['fpo_village']  = _fpo.fpo_village ? { name : _fpo.fpo_village } : '';
+           
 
             this.personal.setValue(formData);
             this.exist = true;

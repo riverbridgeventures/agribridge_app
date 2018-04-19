@@ -24,7 +24,6 @@ export class ExtraValidator {
             }else{
                 resolve(null);
             }
-
         });
     }
 
@@ -46,7 +45,6 @@ export class ExtraValidator {
             }else{
                 resolve(null);
             }
-            
         });
     }
 
@@ -94,7 +92,6 @@ export class ExtraValidator {
                     else{
                         resolve(null);
                     }
-
                 }, err => {
                     resolve({
                         "taken": true
@@ -103,7 +100,6 @@ export class ExtraValidator {
             }else{
                 resolve(null);
             }
-
         });
     }
 }

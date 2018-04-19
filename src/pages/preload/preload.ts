@@ -149,6 +149,7 @@ export class PreloadPage {
             //Database version 1.0.1
             let db = this.sql.getDb();
             db.transaction((tx:any) => {
+             
                 tx.executeSql('SELECT * FROM db_versions WHERE version = ?', ['1.0.1'], (txx, d) => {
                     if(d.rows.length < 1){
 
@@ -163,6 +164,9 @@ export class PreloadPage {
 
                         //Alter tbl_farmers table add column insert_type
                         tx.executeSql('ALTER TABLE tbl_farmers ADD COLUMN insert_type INTEGER DEFAULT 0');
+
+                        //Alter tbl_farmers table add column insert_type
+                        tx.executeSql('ALTER TABLE tbl_farmers ADD COLUMN fm_gender TEXT');
 
                         //Alter tbl_farmers table add column insert_type
                         tx.executeSql('ALTER TABLE tbl_farmers ADD COLUMN fm_fpo INTEGER');

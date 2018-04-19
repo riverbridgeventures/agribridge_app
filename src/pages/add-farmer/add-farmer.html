@@ -87,6 +87,14 @@
 					<p *ngIf="!personal.controls.fm_aadhar.errors.taken">Please enter a 12 digit valid Aadhar no.</p>
 					<p *ngIf="personal.controls.fm_aadhar.errors.taken">The Aadhar no. is already assigned to another user.</p>
 				</div>
+
+				<ion-item>
+					<ion-label floating>Gender? <span>*</span> </ion-label>
+					<ion-select formControlName="fm_gender" interface="popover">
+						<ion-option value="male">Male</ion-option>
+						<ion-option value="female">Female</ion-option>
+					</ion-select>
+				</ion-item>
 				
 			</div>
 		</ion-list>

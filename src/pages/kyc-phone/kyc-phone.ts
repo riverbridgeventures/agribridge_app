@@ -125,8 +125,7 @@ export class KycPhonePage {
                 this.phone.setValue(formData);
                 this.exist = true;
             }
-
-        }, err => {
+		}, err => {
             console.log(err);
         });
 	}
@@ -218,6 +217,7 @@ export class KycPhonePage {
                 });
             }
 		}else{
+			
 			console.log('Validation error');
 			this.showMessage("Please fill valid data!", "danger", 100000);
 		}
